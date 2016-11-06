@@ -1,0 +1,6 @@
+# OSX System File
+.DS_Store
+
+# NPM
+node_modules
+
