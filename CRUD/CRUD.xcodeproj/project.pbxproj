@@ -13,7 +13,23 @@
 		E6ADFB181DCED965005154DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6ADFB171DCED965005154DC /* Assets.xcassets */; };
 		E6ADFB1B1DCED965005154DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6ADFB191DCED965005154DC /* LaunchScreen.storyboard */; };
 		E6ADFB231DCEF1C9005154DC /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6ADFB221DCEF1C9005154DC /* HTTP.swift */; };
+		E6ADFB271DCF0BF7005154DC /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E6ADFB241DCF0A86005154DC /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E6DDE05E1DD04A39009EBCAE /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DDE05D1DD04A39009EBCAE /* PostViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E6ADFB281DCF0BF7005154DC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E6ADFB271DCF0BF7005154DC /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E6ADFB0D1DCED965005154DC /* CRUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +40,8 @@
 		E6ADFB1A1DCED965005154DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6ADFB1C1DCED965005154DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6ADFB221DCEF1C9005154DC /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		E6ADFB241DCF0A86005154DC /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Alamofire.framework; sourceTree = "<group>"; };
+		E6DDE05D1DD04A39009EBCAE /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +74,7 @@
 		E6ADFB0F1DCED965005154DC /* CRUD */ = {
 			isa = PBXGroup;
 			children = (
+				E6ADFB241DCF0A86005154DC /* Alamofire.framework */,
 				E6ADFB101DCED965005154DC /* AppDelegate.swift */,
 				E6ADFB121DCED965005154DC /* ViewController.swift */,
 				E6ADFB221DCEF1C9005154DC /* HTTP.swift */,
@@ -63,6 +82,7 @@
 				E6ADFB171DCED965005154DC /* Assets.xcassets */,
 				E6ADFB191DCED965005154DC /* LaunchScreen.storyboard */,
 				E6ADFB1C1DCED965005154DC /* Info.plist */,
+				E6DDE05D1DD04A39009EBCAE /* PostViewController.swift */,
 			);
 			path = CRUD;
 			sourceTree = "<group>";
@@ -77,6 +97,7 @@
 				E6ADFB091DCED965005154DC /* Sources */,
 				E6ADFB0A1DCED965005154DC /* Frameworks */,
 				E6ADFB0B1DCED965005154DC /* Resources */,
+				E6ADFB281DCF0BF7005154DC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -139,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6DDE05E1DD04A39009EBCAE /* PostViewController.swift in Sources */,
 				E6ADFB131DCED965005154DC /* ViewController.swift in Sources */,
 				E6ADFB231DCEF1C9005154DC /* HTTP.swift in Sources */,
 				E6ADFB111DCED965005154DC /* AppDelegate.swift in Sources */,
@@ -264,6 +286,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CRUD",
+				);
 				INFOPLIST_FILE = CRUD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.rockhursths.amdg.CRUD;
@@ -276,6 +302,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CRUD",
+				);
 				INFOPLIST_FILE = CRUD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.rockhursths.amdg.CRUD;
@@ -303,6 +333,7 @@
 				E6ADFB211DCED965005154DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

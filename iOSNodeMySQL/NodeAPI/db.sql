@@ -37,3 +37,7 @@ WHERE task_id = 1;
 /* DELETE */
 DELETE FROM tasks
 WHERE task_id = 1;
+
+
+INSERT INTO tasks
+SET subject = 'garage', description = 'clean the oil spill';

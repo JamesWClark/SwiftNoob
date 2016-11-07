@@ -6,21 +6,42 @@
 //  Copyright © 2016 J.W. Clark. All rights reserved.
 //
 
+import Alamofire
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    let posturl = "http://localhost:3000/task"
+    let geturl = "http://localhost:3000/task/1"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let posturl = "http://localhost:3000/task"
-        let geturl = "http://localhost:3000/task/1"
-        
-        HTTP.post(url: posturl, body: "")
-        HTTP.get(url: geturl)
-        HTTP.put(url: geturl, body: "")
-        HTTP.delete(url: geturl, body: "")
     }
+    
+    @IBAction func btnGet(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func btnPost(_ sender: UIButton) {
+        let parameters: Parameters = [
+            "foo": [1,2,3],
+            "bar": [
+                "baz": "qux"
+            ]
+        ]
+        
+        Alamofire.request(posturl , method: .post, parameters: parameters, encoding: JSONEncoding(options: [])).responseJSON { response in
+            debugPrint(response)
+        }
 
+    }
+    
+    @IBAction func btnPut(_ sender: UIButton) {
+    }
+    
+    @IBAction func btnDelete(_ sender: UIButton) {
+    }
+    
+    
 }
 
