@@ -18,8 +18,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func barGet(_ sender: UIBarButtonItem) {
+        Alamofire.request(geturl , method: .get, encoding: JSONEncoding(options: [])).responseJSON { response in
+            debugPrint(response)
+        }
+    }
     @IBAction func btnGet(_ sender: UIButton) {
-        
+
     }
     
     @IBAction func btnPost(_ sender: UIButton) {

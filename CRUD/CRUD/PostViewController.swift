@@ -23,18 +23,18 @@ class PostViewController: UIViewController {
     @IBAction func btnSend(_ sender: UIButton) {
         let url = "http://localhost:3000/task"
 
-        /*
-        let headers = [
-            "content-type" : "application/json"
-        ]
-        */
         let params: Parameters = [
             "subject" : txtSubject.text!,
             "description" : txtDescription.text!
         ]
         
         Alamofire.request(url , method: .post, parameters: params, encoding: JSONEncoding.default).responseString { response in
-            debugPrint(response)
+            if response.result.description == "FAILURE" {
+                debugPrint("Failure")
+            } else {
+                self.txtSubject.text = ""
+                self.txtDescription.text = ""
+            }
         }
     }
 
