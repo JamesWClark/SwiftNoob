@@ -9,11 +9,15 @@
 import UIKit
 
 class ThirdViewController: UIViewController {
-
+    
+    var msg: String?
+    
+    @IBOutlet weak var txtField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        txtField.text = msg
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +25,9 @@ class ThirdViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let first = segue.destination as! MainViewController
+        first.msg = txtField.text
     }
-    */
 
 }

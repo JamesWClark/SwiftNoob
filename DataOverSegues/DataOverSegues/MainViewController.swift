@@ -9,24 +9,24 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    var msg: String?
 
     @IBOutlet weak var txtMessage: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        txtMessage.text = msg
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let second = segue.destination as! SecondViewController
         second.msg = txtMessage.text
     }
-
 }
