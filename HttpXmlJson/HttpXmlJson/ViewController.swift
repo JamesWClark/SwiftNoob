@@ -40,11 +40,9 @@ class ViewController: UIViewController {
     func someXmlFunction() {
         // https://mockoon.com/playground/
         let url:String = "https://mocktarget.apigee.net/xml"
-
-
         let urlToSend: URL = URL(string: url)!
-        let parser = ApogeeXmlParser()
-        parser.startParsing(url: urlToSend)
+        let parser = ApogeeXmlParser(url: urlToSend)
+        xmlLabel.text = "City: \(parser.getCity()), First Name: \(parser.getFirstName()), Last Name: \(parser.getLastName()), State: \(parser.getState())"
     }
     
     @IBOutlet weak var ssLabel: UILabel!

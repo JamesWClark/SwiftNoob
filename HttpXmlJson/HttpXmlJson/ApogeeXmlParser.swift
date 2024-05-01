@@ -17,6 +17,19 @@ class ApogeeXmlParser: NSObject, XMLParserDelegate {
     var lastName: String = ""
     var state: String = ""
     
+    func getCity()      -> String { return city }
+    func getFirstName() -> String { return firstName }
+    func getLastName()  -> String { return lastName }
+    func getState()     -> String { return state }
+
+    init(url: URL) {
+        super.init()
+        let parser = XMLParser(contentsOf: url)!
+        parser.delegate = self
+        parser.parse()
+        print("City: \(city), First Name: \(firstName), Last Name: \(lastName), State: \(state)")
+    }
+    
     func startParsing(url: URL) {
         let parser = XMLParser(contentsOf: url)!
         parser.delegate = self
