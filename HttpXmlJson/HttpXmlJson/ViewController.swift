@@ -10,7 +10,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, XMLParserDelegate {
+class ViewController: UIViewController {
     
     
     func doPost(url: String) {
@@ -20,93 +20,32 @@ class ViewController: UIViewController, XMLParserDelegate {
         //request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 return
             }
             
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
                 print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
+                print("response = \(String(describing: response))")
             }
             
             let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
+            print("responseString = \(String(describing: responseString))")
         }
         task.resume()
     }
     
-    
-    
-    var pizzas = [String]()
-    
-    // event while parsing an element
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        print("PARSER 1")
-        currentElement = elementName
-        if(elementName == "id" || elementName == "name" || elementName == "cost" || elementName == "description") {
-            if(elementName == "name") {
-                passName = true
-            }
-            passData = true
-        }
-    }
-    
-    // event after parsing an element
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        print("PARSER 2")
-        currentElement = ""
-        if(elementName == "id" || elementName == "name" || elementName == "cost" || elementName == "description") {
-            if(elementName == "name") {
-                passName = false
-            }
-            passData = false
-        }
-    }
-    
-    // event during parsing text inside an element
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
-        print("PARSER 3")
-        if(passName) {
-            pizzas.append(string);
-            strXmlData = strXmlData + "\n\n" + string
-        }
-        if(passData) {
-            print(string)
-        }
-    }
-    
-    // event when parser error occurs
-    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-        print("PARSER 4")
-        print("failure error: %@", parseError)
-    }
-    
-    var strXmlData:String = ""
-    var currentElement:String = ""
-    var passData:Bool = false
-    var passName:Bool = false
-    var parser = XMLParser()
-    
     @IBOutlet weak var xmlLabel: UILabel!
     
     func someXmlFunction() {
-        let url:String = "http://api.androidhive.info/pizza/?format=xml"
+        // https://mockoon.com/playground/
+        let url:String = "https://mocktarget.apigee.net/xml"
+
+
         let urlToSend: URL = URL(string: url)!
-        parser = XMLParser(contentsOf: urlToSend)!
-        parser.delegate = self
-        
-        let success:Bool = parser.parse()
-        
-        if success {
-            print("parse success!")
-            print(strXmlData)
-            xmlLabel.text = pizzas[0]
-        } else {
-            print("parse failure!")
-        }
+        let parser = ApogeeXmlParser()
+        parser.startParsing(url: urlToSend)
     }
-    
-    
     
     @IBOutlet weak var ssLabel: UILabel!
     
@@ -116,7 +55,7 @@ class ViewController: UIViewController, XMLParserDelegate {
         
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
-                print(error)
+                print(error!)
                 return
             }
             
@@ -148,7 +87,7 @@ class ViewController: UIViewController, XMLParserDelegate {
         
         let task = URLSession.shared.dataTask(with: url!) { data, response, error in
             guard error == nil else {
-                print(error)
+                print(error!)
                 return
             }
             guard let data = data else {
@@ -171,9 +110,9 @@ class ViewController: UIViewController, XMLParserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         someXmlFunction()
-        someJsonFunction()
-        sheetFunction()
-        doPost(url: "http://posttestserver.com/post.php");
+        // someJsonFunction()
+        // sheetFunction()
+        // doPost(url: "http://posttestserver.com/post.php");
         
         
     }
